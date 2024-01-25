@@ -1,6 +1,6 @@
 "use client";
 
-import { useFetchHome } from "@/utils/actions";
+import { useFetchHome } from "@/utils/actions/home";
 import React from "react";
 
 function Card({ children }) {
