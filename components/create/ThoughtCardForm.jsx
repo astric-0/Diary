@@ -6,11 +6,12 @@ import ThoughtContext from "@/lib/contexts/thought/context";
 import { classy } from "@/utils";
 import { UserIcon, PlusIcon } from "@heroicons/react/24/outline";
 
-function TagBox({ tag }) {
+function TagBox({ tag, onClick }) {
 	return (
 		<div
-			className="border-2 inline-block rounded-full p-1 h-fit my-2 px-2 m-1 border-slate-400 text-slate-400 cursor-pointer"
+			className="border-2 inline-block rounded-full p-1 h-fit my-2 px-2 m-1 bg-slate-400 text-white cursor-pointer hover:bg-red-500"
 			title="add tag"
+			onClick={onClick}
 		>
 			{tag}
 		</div>
@@ -45,16 +46,15 @@ function Input({
 }
 
 function ThoughtCardForm() {
-	const { state, handleInput, addTag } = useContext(ThoughtContext);
-	const [tagInputHide, setTagInputHide] = useState(true);
+	const { state, handleInput, addTag, removeTag } =
+		useContext(ThoughtContext);
 	const [newTagInput, setNewTagInput] = useState("");
 
 	const handleTagInputHide = () => {
-		if (!tagInputHide && newTagInput) {
+		if (newTagInput) {
 			addTag(newTagInput);
 			setNewTagInput("");
 		}
-		setTagInputHide(!tagInputHide);
 	};
 
 	return (
@@ -66,28 +66,40 @@ function ThoughtCardForm() {
 							<UserIcon />
 						</div>
 					</div>
+
 					<div className="col-span-7">
 						<div className="flex justify-between">
 							<div className="w-full">
 								<Input placeholder="title" />
 							</div>
 						</div>
-						<div className="mt-3 w-full flex">
+
+						<div className="mt-3 w-full">
 							{state.tags.map((tag, index) => (
-								<TagBox key={index} tag={tag} />
+								<TagBox
+									key={index}
+									tag={tag}
+									onClick={() => removeTag(index)}
+								/>
 							))}
-							<Input
-								placeholder="tags"
-								hidden={tagInputHide}
-								value={newTagInput}
-								onChange={(e) => setNewTagInput(e.target.value)}
-							/>
-							<div
-								className="border-2 inline-block rounded-full p-1 h-fit my-2 px-4 border-slate-400 text-slate-400 cursor-pointer"
-								title="add tag"
-								onClick={handleTagInputHide}
-							>
-								<PlusIcon className="h-5" />
+
+							<div className="grid grid-cols-7">
+								<div className="col-span-6">
+									<Input
+										placeholder="tags"
+										value={newTagInput}
+										onChange={(e) =>
+											setNewTagInput(e.target.value)
+										}
+									/>
+								</div>
+								<div
+									className="border-2 inline align-middle rounded-full p-1 h-fit w-fit px-4 border-slate-400 text-slate-400 cursor-pointer justify-self-center"
+									title="add tag"
+									onClick={handleTagInputHide}
+								>
+									<PlusIcon className="h-5" />
+								</div>
 							</div>
 						</div>
 					</div>

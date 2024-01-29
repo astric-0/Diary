@@ -18,8 +18,14 @@ function Provider({ children }) {
 		setState({ ...state, tags: [...state.tags, tag] });
 	};
 
+	const removeTag = (index) => {
+		setState({ ...state, tags: state.tags.filter((_, i) => index != i) });
+	};
+
 	return (
-		<ThoughtContext.Provider value={{ state, handleInput, addTag }}>
+		<ThoughtContext.Provider
+			value={{ state, handleInput, addTag, removeTag }}
+		>
 			{children}
 		</ThoughtContext.Provider>
 	);
