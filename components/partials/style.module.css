@@ -1,0 +1,22 @@
+.navIconAnimation {
+	background: linear-gradient(304deg, #9949db, #61e8d7, #0c30f1);
+	background-size: 600% 600%;
+	/* color: transparent;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text; */
+	animation: AnimationName 16s ease infinite;
+}
+
+@keyframes AnimationName {
+	0% {
+		background-position: 0% 27%;
+	}
+	50% {
+		background-position: 100% 74%;
+	}
+	100% {
+		background-position: 0% 27%;
+	}
+}
+/*class="text-5xl p-4 text-center font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent"*/

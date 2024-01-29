@@ -1,5 +1,6 @@
 import React from "react";
 import { Spinner } from "../common";
+
 function LoadingScreeen() {
 	return (
 		<div className="animate-pulse bg-gray-800 w-full h-full rounded-lg">
