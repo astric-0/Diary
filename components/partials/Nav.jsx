@@ -10,16 +10,21 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export function PlusIcon() {
+export function CreateIcon({ active }) {
 	return (
-		<div className="my-auto">
-			<PlusCircleIcon className="text-white h-14 hover:rotate-180 hover:scale-125 hover:text-indigo-500 duration-300 ease-out cursor-pointer" />
+		<div className="my-auto mx-2 text-white">
+			<PlusCircleIcon
+				className={classy(
+					"h-14 hover:rotate-180 hover:scale-125 hover:text-indigo-500 duration-300 ease-out cursor-pointer",
+					{ "text-indigo-500": active }
+				)}
+				title="Create"
+			/>
 		</div>
 	);
 }
 
 export function NavIcon({ label, icon: Icon, active, href }) {
-	console.log(label, active);
 	return (
 		<Link
 			href={href}
@@ -52,7 +57,7 @@ function Nav() {
 						active={val.href == pathname}
 					/>
 				))}
-				<PlusIcon />
+				<CreateIcon active={pathname.includes("create")} />
 			</div>
 		</div>
 	);

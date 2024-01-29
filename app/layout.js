@@ -5,7 +5,7 @@ import "./globals.css";
 const sourceCodePro = Source_Code_Pro({ subsets: ["latin"], display: "swap" });
 
 export const metadata = {
-	title: "Diary",
+	title: "heretics",
 };
 
 export default function RootLayout({ children }) {
