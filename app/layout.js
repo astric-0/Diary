@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
 		<html lang="en">
 			<body className={sourceCodePro.className}>
 				<Nav />
-				<div className="w-screen h-screen overflow-hidden">
+				<div className="w-screen h-screen overflow-x-hidden">
 					{children}
 				</div>
 			</body>
