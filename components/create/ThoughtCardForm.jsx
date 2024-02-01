@@ -66,7 +66,7 @@ function ThoughtCardForm() {
 		}
 	}, [handleAddFile]);
 
-	const handleTagInputHide = () => {
+	const handleTagInput = () => {
 		if (newTagInput) {
 			addTag(newTagInput);
 			setNewTagInput("");
@@ -78,7 +78,7 @@ function ThoughtCardForm() {
 			<form>
 				<div
 					className={classy(
-						"duration-300 ease-linear col-auto w-full rounded-lg shadow-lg p-3 bg-cover",
+						"duration-300 ease-linear col-auto w-full rounded-lg p-3 bg-cover shadow-lg drop-shadow-2xl",
 						{ [state.color]: !state.fileUrl }
 					)}
 					style={
@@ -131,7 +131,7 @@ function ThoughtCardForm() {
 									<div
 										className="border-2 inline align-middle rounded-full p-1 h-fit w-fit px-4 border-white text-white cursor-pointer justify-self-center animate-bounce ease-in-out"
 										title="add tag"
-										onClick={handleTagInputHide}
+										onClick={handleTagInput}
 									>
 										<PlusIcon className="h-5" />
 									</div>
@@ -161,7 +161,7 @@ function ThoughtCardForm() {
 					/>
 				))}
 				<ColorBox
-					className="p-3 outline outline-2"
+					className="p-3 ring-2 ring-white"
 					color="bg-transparent"
 					onClick={() => fileInputRef?.current.click()}
 				>
