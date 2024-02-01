@@ -1,25 +1,11 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import { TagBox, ColorBox } from "../common";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useContext } from "react";
 import ThoughtContext from "@/lib/contexts/thought/context";
-import { classy } from "@/utils";
+import { classy, bgColors } from "@/utils";
 import { UserIcon, PlusIcon, PhotoIcon } from "@heroicons/react/24/outline";
-
-function TagBox({ tag, onClick, color }) {
-	return (
-		<div
-			className={classy(
-				"border-2 inline-block rounded-full p-1 h-fit my-2 px-2 m-1 text-white cursor-pointer hover:bg-red-500",
-				color
-			)}
-			title="add tag"
-			onClick={onClick}
-		>
-			{tag}
-		</div>
-	);
-}
 
 function Input({
 	type,
@@ -56,6 +42,30 @@ function ThoughtCardForm() {
 
 	const fileInputRef = useRef(null);
 
+	const handleAddFile = useCallback(
+		(event) => {
+			console.log(event.target.files[0]);
+			addFile(event.target.files[0]);
+		},
+		[addFile]
+	);
+
+	useEffect(() => {
+		if (fileInputRef?.current) {
+			const fileRef = fileInputRef;
+			fileRef.current.addEventListener("change", handleAddFile);
+			return () => {
+				if (fileRef?.current) {
+					fileRef.current.value = null;
+					fileRef.current.removeEventListener(
+						"change",
+						handleAddFile
+					);
+				}
+			};
+		}
+	}, [handleAddFile]);
+
 	const handleTagInputHide = () => {
 		if (newTagInput) {
 			addTag(newTagInput);
@@ -63,30 +73,19 @@ function ThoughtCardForm() {
 		}
 	};
 
-	const handleFileInput = (event) => {
-		addFile(event);
-	};
-
-	const colors = [
-		"bg-slate-800",
-		"bg-red-600",
-		"bg-indigo-700",
-		"bg-purple-700",
-		"bg-purple-900",
-		"bg-yellow-900",
-		"bg-emerald-950",
-		"bg-sky-950",
-	];
-
 	return (
 		<div className="max-h-screen">
 			<form>
 				<div
 					className={classy(
 						"duration-300 ease-linear col-auto w-full rounded-lg shadow-lg p-3 bg-cover",
-						state.color
+						{ [state.color]: !state.fileUrl }
 					)}
-					style={{ backgroundImage: `url(${state.fileUrl})` }}
+					style={
+						state.fileUrl
+							? { backgroundImage: `url(${state.fileUrl})` }
+							: {}
+					}
 				>
 					<div className="grid grid-cols-8 bg-white p-2 rounded-3xl bg-opacity-20">
 						<div className="col-span-1 my-2">
@@ -110,6 +109,7 @@ function ThoughtCardForm() {
 											tag,
 											color: state.color,
 											onClick: () => removeTag(index),
+											className: "hover:bg-red-700",
 										}}
 									/>
 								))}
@@ -117,13 +117,15 @@ function ThoughtCardForm() {
 								<div className="grid grid-cols-7">
 									<div className="col-span-6">
 										<Input
-											placeholder="tags"
-											value={newTagInput}
-											onChange={(e) =>
-												setNewTagInput(
-													e.target.value.trim()
-												)
-											}
+											{...{
+												placeholder: "tags",
+												value: newTagInput,
+												onChange: (e) => {
+													setNewTagInput(
+														e.target.value.trim()
+													);
+												},
+											}}
 										/>
 									</div>
 									<div
@@ -142,39 +144,30 @@ function ThoughtCardForm() {
 						<textarea
 							rows={15}
 							className="text-lg w-full bg-transparent focus:outline-none placeholder-gray-200"
-							placeholder="your thoughts!"
+							placeholder="share your thoughts!"
 						></textarea>
 					</div>
 				</div>
 			</form>
 			<div className="flex justify-center mt-10">
-				{colors.map((color, index) => (
-					<span
+				{bgColors.map((color, index) => (
+					<ColorBox
 						key={index}
-						className={classy(
+						{...{
 							color,
-							"inline-block aspect-square mx-2 rounded-full h-16 cursor-pointer duration-200 hover:scale-110",
-							{
-								"outline outline-2 outline-white outline-offset-4":
-									state.color == color,
-							}
-						)}
-						onClick={addColor(color)}
-					></span>
+							onClick: addColor(color),
+							active: state.color == color,
+						}}
+					/>
 				))}
-				<span className="aspect-square mx-2 rounded-full h-16 outline cursor-pointer outline-2 p-3">
-					<PhotoIcon
-						className="h-10"
-						onClick={() => fileInputRef.current.click()}
-					/>
-
-					<input
-						ref={fileInputRef}
-						type="file"
-						className="hidden"
-						onChange={addFile}
-					/>
-				</span>
+				<ColorBox
+					className="p-3 outline outline-2"
+					color="bg-transparent"
+					onClick={() => fileInputRef?.current.click()}
+				>
+					<PhotoIcon className="h-10" />
+					<input ref={fileInputRef} type="file" className="hidden" />
+				</ColorBox>
 			</div>
 		</div>
 	);

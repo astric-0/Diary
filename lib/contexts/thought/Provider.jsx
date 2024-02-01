@@ -1,36 +1,57 @@
 "use client";
 
 import ThoughtContext from "./context";
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import { bgColors } from "@/utils";
 
 function Provider({ children }) {
 	const [state, setState] = useState({
 		title: "",
 		thought: "",
 		tags: [],
-		color: "bg-slate-800",
+		color: bgColors[0],
 	});
 
-	const handleInput = (key) => (event) => {
-		setState({ ...state, [key]: event.target.value });
-	};
+	const handleInput = useCallback(
+		(key) => (event) => {
+			setState({ ...state, [key]: event.target.value });
+		},
+		[state]
+	);
 
-	const addColor = (color) => () => {
-		setState({ ...state, fileUrl: null, color });
-	};
+	const addColor = useCallback(
+		(color) => () => {
+			setState({ ...state, fileUrl: null, color });
+		},
+		[state]
+	);
 
-	const addTag = (tag) => {
-		setState({ ...state, tags: [...state.tags, tag] });
-	};
+	const addTag = useCallback(
+		(tag) => {
+			setState({ ...state, tags: [...state.tags, tag] });
+		},
+		[state]
+	);
 
-	const addFile = (event) => {
-		const fileUrl = URL.createObjectURL(event.target.files[0]);
-		setState({ ...state, color: null, fileUrl });
-	};
+	const addFile = useCallback(
+		(file) => {
+			if (file) {
+				const fileUrl = URL.createObjectURL(file);
+				setState({ ...state, color: null, fileUrl });
+			}
+		},
+		[state]
+	);
 
-	const removeTag = (index) => {
-		setState({ ...state, tags: state.tags.filter((_, i) => index != i) });
-	};
+	const removeTag = useCallback(
+		(index) => {
+			setState({
+				...state,
+				tags: state.tags.filter((_, i) => index != i),
+			});
+		},
+		[state]
+	);
 
 	return (
 		<ThoughtContext.Provider
