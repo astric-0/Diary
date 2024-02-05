@@ -1,6 +1,12 @@
 import { classy } from "@/utils";
 
-function ColorBox({ active, className, color, onClick, children }) {
+function ColorBox({
+	active = false,
+	className,
+	color = "bg-primary",
+	onClick,
+	children,
+}) {
 	return (
 		<span
 			className={classy(
@@ -17,11 +23,5 @@ function ColorBox({ active, className, color, onClick, children }) {
 		</span>
 	);
 }
-
-ColorBox.defaultProps = {
-	active: false,
-	color: "bg-primary",
-	onClick: () => {},
-};
 
 export default ColorBox;

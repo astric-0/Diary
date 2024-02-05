@@ -1,6 +1,6 @@
 import { classy } from "@/utils";
 
-function TagBox({ tag, onClick, color, className }) {
+function TagBox({ tag, onClick, color = "bg-black", className }) {
 	return (
 		<div
 			className={classy(
@@ -15,10 +15,5 @@ function TagBox({ tag, onClick, color, className }) {
 		</div>
 	);
 }
-
-TagBox.defaultProps = {
-	color: "bg-black",
-	onClick: () => {},
-};
 
 export default TagBox;

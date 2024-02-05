@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import { bgColors } from "./utils";
 module.exports = {
 	content: [
 		"./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -18,4 +19,5 @@ module.exports = {
 		},
 	},
 	plugins: [],
+	safelist: [...bgColors],
 };
