@@ -12,6 +12,8 @@ function Provider({ children }) {
 		color: bgColors[0],
 	});
 
+	const [imageSection, setImageSection] = useState([]);
+
 	const handleInput = useCallback(
 		(key) => (event) => {
 			setState({ ...state, [key]: event.target.value });

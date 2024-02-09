@@ -1,6 +1,10 @@
-import { CardHolder, ThoughtCardForm } from "@/components/create/";
+import {
+	CardHolder,
+	ThoughtCardForm,
+	ImageSection,
+} from "@/components/create/";
 import ThoughtProvider from "@/lib/contexts/thought/Provider";
-
+``;
 function Page() {
 	return (
 		<ThoughtProvider>
@@ -9,7 +13,9 @@ function Page() {
 				<div className="col-span-2">
 					<ThoughtCardForm />
 				</div>
-				<div></div>
+				<div>
+					<ImageSection />
+				</div>
 			</div>
 		</ThoughtProvider>
 	);
