@@ -44,7 +44,6 @@ function ThoughtCardForm() {
 
 	const handleAddFile = useCallback(
 		(event) => {
-			console.log(event.target.files[0]);
 			addFile(event.target.files[0]);
 		},
 		[addFile]
@@ -166,7 +165,12 @@ function ThoughtCardForm() {
 					onClick={() => fileInputRef?.current.click()}
 				>
 					<PhotoIcon className="h-10" />
-					<input ref={fileInputRef} type="file" className="hidden" />
+					<input
+						ref={fileInputRef}
+						type="file"
+						accept="image/*"
+						className="hidden"
+					/>
 				</ColorBox>
 			</div>
 		</div>

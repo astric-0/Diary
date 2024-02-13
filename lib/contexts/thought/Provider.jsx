@@ -10,6 +10,7 @@ function Provider({ children }) {
 		thought: "",
 		tags: [],
 		color: bgColors[0],
+		files: [],
 	});
 
 	const [imageSection, setImageSection] = useState([]);
@@ -55,9 +56,47 @@ function Provider({ children }) {
 		[state]
 	);
 
+	const addImageSection = useCallback(
+		(files) => {
+			const filesToAdd = [].flatMap.call(files, (file) =>
+				imageSection.some(
+					({ file: { name, size } }) =>
+						name == file.name && size == file.size
+				)
+					? []
+					: [
+							{
+								file,
+								src: URL.createObjectURL(file),
+							},
+					  ]
+			);
+
+			setImageSection([...imageSection, ...filesToAdd]);
+		},
+		[imageSection]
+	);
+
+	const removeFromImageSection = useCallback(
+		(index) => {
+			setImageSection(imageSection.filter((_, i) => index != i));
+		},
+		[imageSection]
+	);
+
 	return (
 		<ThoughtContext.Provider
-			value={{ state, handleInput, addTag, removeTag, addColor, addFile }}
+			value={{
+				state,
+				handleInput,
+				addTag,
+				removeTag,
+				addColor,
+				addFile,
+				imageSection,
+				addImageSection,
+				removeFromImageSection,
+			}}
 		>
 			{children}
 		</ThoughtContext.Provider>
