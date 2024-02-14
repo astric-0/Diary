@@ -1,8 +1,13 @@
 "use client";
 
 import { TagBox, ColorBox } from "../common";
-import React, { useState, useRef, useEffect, useCallback } from "react";
-import { useContext } from "react";
+import React, {
+	useState,
+	useRef,
+	useEffect,
+	useCallback,
+	useContext,
+} from "react";
 import ThoughtContext from "@/lib/contexts/thought/context";
 import { classy, bgColors } from "@/utils";
 import { UserIcon, PlusIcon, PhotoIcon } from "@heroicons/react/24/outline";

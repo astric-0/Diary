@@ -1,14 +1,13 @@
-export default function classy(...cssClasses) {
-	return cssClasses.reduce((selectedCssClasses, currentCssClass) => {
-		if (currentCssClass?.constructor == Object) {
+export default function classy(...css) {
+	return css.reduce((toAddCss, currCss) => {
+		if (currCss?.constructor == Object) {
 			return (
-				selectedCssClasses +
-				Object.keys(currentCssClass)
-					.flatMap((key) => (currentCssClass[key] ? [" " + key] : []))
+				toAddCss +
+				Object.keys(currCss)
+					.flatMap((key) => (currCss[key] ? [" " + key] : []))
 					.join("")
 			);
-		} else if (typeof currentCssClass == "string")
-			return selectedCssClasses + " " + currentCssClass;
-		else return selectedCssClasses;
+		} else if (typeof currCss == "string") return toAddCss + " " + currCss;
+		else return toAddCss;
 	}, "");
 }
