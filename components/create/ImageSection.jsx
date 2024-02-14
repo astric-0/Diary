@@ -33,7 +33,7 @@ function ImageBox({ src, onDelete }) {
 		>
 			<TrashIcon
 				className={classy(
-					"bg-red-500 rounded-full p-1 absolute h-7 left-[100%] z-20 top-0 -translate-y-1/2 -translate-x-1/2 duration-200 cursor-pointer",
+					"bg-red-500 rounded-full p-1 absolute h-7 left-full z-20 top-0 -translate-y-1/2 -translate-x-1/2 duration-200 cursor-pointer",
 					{ hidden: !hover }
 				)}
 				onClick={onDelete}
@@ -55,7 +55,6 @@ function ImageSection() {
 
 	const handleAddImageSection = useCallback(
 		(event) => {
-			console.log(event.target.files);
 			addImageSection(event.target.files);
 		},
 		[addImageSection]
