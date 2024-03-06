@@ -4,7 +4,7 @@ import {
 	ImageSection,
 } from "@/components/create/";
 import ThoughtProvider from "@/lib/contexts/thought/Provider";
-``;
+
 function Page() {
 	return (
 		<ThoughtProvider>
