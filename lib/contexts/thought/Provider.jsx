@@ -66,6 +66,7 @@ function Provider({ children }) {
 					? []
 					: [
 							{
+								id: Date.now(),
 								file,
 								src: URL.createObjectURL(file),
 							},
@@ -77,12 +78,9 @@ function Provider({ children }) {
 		[imageSection]
 	);
 
-	const removeFromImageSection = useCallback(
-		(index) => {
-			setImageSection(imageSection.filter((_, i) => index != i));
-		},
-		[imageSection]
-	);
+	const removeFromImageSection = useCallback((imageId) => {
+		setImageSection((images) => images.filter(({ id }) => id != imageId));
+	}, []);
 
 	return (
 		<ThoughtContext.Provider

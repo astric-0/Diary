@@ -45,10 +45,10 @@ function ImageSection() {
 				ref={ref}
 			/>
 			<AddImageBox onClick={() => ref?.current.click()} />
-			{imageSection?.map(({ src }, index) => (
+			{imageSection?.map(({ id, src }) => (
 				<ImageBox
-					key={index}
-					{...{ src, onDelete: handleRemoveFromImageSection(index) }}
+					key={id}
+					{...{ src, onDelete: handleRemoveFromImageSection(id) }}
 				/>
 			))}
 		</div>
