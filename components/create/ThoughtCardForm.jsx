@@ -86,9 +86,9 @@ function ThoughtCardForm() {
 						{ [state.color]: !state.fileUrl }
 					)}
 					style={
-						state.fileUrl
-							? { backgroundImage: `url(${state.fileUrl})` }
-							: {}
+						state.fileUrl && {
+							backgroundImage: `url(${state.fileUrl})`,
+						}
 					}
 				>
 					<div className="grid grid-cols-8 bg-white p-2 rounded-3xl bg-opacity-20">
