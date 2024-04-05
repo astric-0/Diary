@@ -1,6 +1,6 @@
 import React from "react";
 
-function LoadingCardLayout({ children }) {
+function CardLayout({ children }) {
 	return (
 		<div className="grid grid-cols-4 gap-10 justify-between p-10">
 			{children}
@@ -8,4 +8,4 @@ function LoadingCardLayout({ children }) {
 	);
 }
 
-export default LoadingCardLayout;
+export default CardLayout;

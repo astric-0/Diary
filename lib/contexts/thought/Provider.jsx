@@ -11,6 +11,7 @@ function Provider({ children }) {
 		tags: [],
 		color: bgColors[0],
 		files: [],
+		fileUrl: null,
 	});
 
 	const [imageSection, setImageSection] = useState([]);

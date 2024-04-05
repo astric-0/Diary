@@ -99,10 +99,8 @@ function ThoughtCardForm() {
 						</div>
 
 						<div className="col-span-7">
-							<div className="flex justify-between">
-								<div className="w-full">
-									<Input placeholder="title" />
-								</div>
+							<div className="w-full">
+								<Input placeholder="title" />
 							</div>
 
 							<div className="mt-3 w-full">
@@ -114,6 +112,7 @@ function ThoughtCardForm() {
 											color: state.color,
 											onClick: () => removeTag(index),
 											className: "hover:bg-red-700",
+											title: "click to remove tag",
 										}}
 									/>
 								))}

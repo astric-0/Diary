@@ -19,9 +19,9 @@ function ImageBox({ src, onDelete }) {
 			show={show}
 			enter="duration-[500ms] linear"
 			enterFrom="opacity-0 scale-0"
-			enterTo="opacity-100 scale-[80%]"
+			enterTo="opacity-100"
 			leave="duration-[500ms] linear"
-			leaveFrom="opacity-100 scale-[80%] "
+			leaveFrom="opacity-100 scale-[80%]"
 			leaveTo="opacity-0 scale-0"
 		>
 			<div
