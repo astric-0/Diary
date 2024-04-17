@@ -2,11 +2,27 @@
 
 import React from "react";
 import { TagBox } from ".";
+import { API, make } from "@/config";
 
-function Card({ title, thought, tags, color, files, fileUrl }) {
+function Card({
+	title,
+	thought,
+	tags,
+	color,
+	files,
+	fileUrl,
+	api = API.IMAGE.THOUGHT,
+}) {
 	return (
 		<div
-			className={`hover:shadow-lg hover:shadow-white duration-200 ease-linear col-auto w-full rounded-lg shadow-lg p-3 h-fit ${color}`}
+			className={`hover:shadow-lg hover:shadow-white duration-200 bg-cover ease-linear col-auto w-full rounded-lg shadow-lg p-3 h-fit ${
+				!fileUrl && color
+			}`}
+			style={
+				fileUrl && {
+					backgroundImage: `url(${make(api, fileUrl)})`,
+				}
+			}
 		>
 			<div className="grid grid-cols-6 bg-white p-2 rounded-xl bg-opacity-20">
 				<div className="col-span-1 my-2">

@@ -7,7 +7,7 @@ function getHomeContent() {
 			id: "",
 			title: "Harper Lee",
 			thought:
-				"Kill all the bluejays if you wish to but remember it's a sin to kill a mocking bird ... ",
+				"Shoot all the bluejays you want, if you can hit 'em, but remember it's a sin to kill a mockingbird...",
 			tags: ["words", "books", "reader", "track", "mockingbird"],
 			color: bgColors[3],
 			files: [],
@@ -19,9 +19,9 @@ function getHomeContent() {
 			thought:
 				"hahahahhahahahhhahahahahahahahahhahahahhahahahhhahahahahahahahahhahahahhahahahhhahahahahahahahahhahahahhahahahhhahahahahahahahah ..........",
 			tags: ["word", "intrusive", "hellhole"],
-			color: bgColors[6],
+			color: null,
 			files: [],
-			fileUrl: null,
+			fileUrl: "image1.JPG",
 		},
 		{
 			id: "",
@@ -48,7 +48,6 @@ function getHomeContent() {
 }
 
 export async function GET(request) {
-	console.log("api hit");
 	await madeUpDelay(3000);
 	return NextResponse.json({ data: getHomeContent() });
 }
