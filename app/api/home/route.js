@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { bgColors, madeUpDelay } from "@/utils";
+import { bgColors, madeUpDelay, shuffler } from "@/utils";
 
 function getHomeContent() {
 	return [
@@ -49,5 +49,12 @@ function getHomeContent() {
 
 export async function GET(request) {
 	await madeUpDelay(3000);
-	return NextResponse.json({ data: getHomeContent() });
+	return NextResponse.json({
+		data: shuffler(
+			...getHomeContent(),
+			...getHomeContent(),
+			...getHomeContent(),
+			...getHomeContent()
+		),
+	});
 }

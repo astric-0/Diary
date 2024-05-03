@@ -15,7 +15,7 @@ function Card({
 }) {
 	return (
 		<div
-			className={`hover:shadow-lg hover:shadow-white duration-200 bg-cover ease-linear col-auto w-full rounded-lg shadow-lg p-3 h-fit ${
+			className={`hover:shadow-lg mb-4 break-inside hover:shadow-white duration-200 bg-cover ease-linear col-auto w-full rounded-lg shadow-lg p-3 h-fit ${
 				!fileUrl && color
 			}`}
 			style={

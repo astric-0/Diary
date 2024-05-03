@@ -2,8 +2,10 @@ import React from "react";
 
 function CardLayout({ children }) {
 	return (
-		<div className="grid grid-cols-4 gap-10 justify-between p-10">
-			{children}
+		<div className="wrapper">
+			<div className="m-2 box-border sm:columns-1 md:columns-2 lg:columns-4 xl:columns-4 gap-4">
+				{children}
+			</div>
 		</div>
 	);
 }

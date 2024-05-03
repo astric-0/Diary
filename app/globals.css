@@ -31,3 +31,8 @@ body {
 		text-wrap: balance;
 	}
 }
+
+.break-inside {
+	-moz-column-break-inside: avoid;
+	break-inside: avoid;
+}
