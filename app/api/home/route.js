@@ -48,7 +48,7 @@ function getHomeContent() {
 }
 
 export async function GET(request) {
-	await madeUpDelay(3000);
+	await madeUpDelay(2000);
 	return NextResponse.json({
 		data: shuffler(
 			...getHomeContent(),

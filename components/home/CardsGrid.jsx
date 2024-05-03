@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { memo, useMemo } from "react";
 import { API } from "@/config";
 import { CardLayout } from ".";
 import { Card } from "../common";
