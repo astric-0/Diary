@@ -39,7 +39,6 @@ export function NavIcon({ label, icon: Icon, active, href }) {
 	);
 }
 
-// class="text-5xl p-4 text-center font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent"
 function Nav() {
 	const icons = [
 		{ label: "Home", icon: HomeIcon, href: "/" },
