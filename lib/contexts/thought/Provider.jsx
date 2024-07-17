@@ -41,7 +41,11 @@ function Provider({ children }) {
 		(file) => {
 			if (file) {
 				const fileUrl = URL.createObjectURL(file);
-				setState({ ...state, color: null, fileUrl });
+				setState({
+					...state,
+					color: null,
+					fileUrl: { file, url: URL.createObjectURL(file) },
+				});
 			}
 		},
 		[state]
@@ -95,6 +99,7 @@ function Provider({ children }) {
 				imageSection,
 				addImageSection,
 				removeFromImageSection,
+				duration: "duration-300",
 			}}
 		>
 			{children}

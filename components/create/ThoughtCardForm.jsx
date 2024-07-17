@@ -40,8 +40,15 @@ function Input({
 }
 
 function ThoughtCardForm() {
-	const { state, handleInput, addTag, addFile, removeTag, addColor } =
-		useContext(ThoughtContext);
+	const {
+		state,
+		handleInput,
+		addTag,
+		addFile,
+		removeTag,
+		addColor,
+		duration,
+	} = useContext(ThoughtContext);
 
 	const [newTagInput, setNewTagInput] = useState("");
 
@@ -82,12 +89,13 @@ function ThoughtCardForm() {
 			<form>
 				<div
 					className={classy(
-						"duration-300 ease-linear col-auto w-full rounded-lg p-3 bg-cover shadow-lg drop-shadow-2xl",
+						duration,
+						"ease-linear col-auto w-full rounded-lg p-3 bg-cover shadow-lg drop-shadow-2xl",
 						{ [state.color]: !state.fileUrl }
 					)}
 					style={
 						state.fileUrl && {
-							backgroundImage: `url(${state.fileUrl})`,
+							backgroundImage: `url(${state.fileUrl.url})`,
 						}
 					}
 				>
@@ -100,7 +108,11 @@ function ThoughtCardForm() {
 
 						<div className="col-span-7">
 							<div className="w-full">
-								<Input placeholder="title" />
+								<Input
+									value={state.title}
+									onChange={handleInput("title")}
+									placeholder="title"
+								/>
 							</div>
 
 							<div className="mt-3 w-full">
@@ -145,6 +157,8 @@ function ThoughtCardForm() {
 
 					<div className="p-3 bg-white mt-3 rounded-3xl bg-opacity-20">
 						<textarea
+							value={state.thought}
+							onChange={handleInput("thought")}
 							rows={15}
 							className="text-lg w-full bg-transparent focus:outline-none placeholder-gray-200"
 							placeholder="share your thoughts!"

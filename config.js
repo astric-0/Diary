@@ -1,6 +1,6 @@
 const image_api = process.env.image_api;
 
-const API = {
+const API = Object.freeze({
 	INDEX: "https://localhost:3000/",
 	HOME: {
 		INDEX: "/api/home",
@@ -8,11 +8,12 @@ const API = {
 	IMAGE: {
 		THOUGHT: image_api + "/thoughts",
 	},
-};
+	CREATE: {
+		THOUGHT: "/api/create/thought",
+	},
+});
 
-const make = (url, path) => url + "/" + path;
+const make = (url, path) => (url + url.endsWith("/") ? "" : "/" + path);
 const make_t_image = (img) => make(API.IMAGE.THOUGHT, img);
-
-Object.freeze(API);
 
 export { API, make, make_t_image };
